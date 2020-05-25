@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:device_apps/device_apps.dart';
+import 'package:flutter/services.dart';
 
 class Loading extends StatefulWidget {
   @override
@@ -8,20 +9,42 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
-  Set<String> googleApps = {'Chrome', 'Gmail', 'Hangouts', 'Meet'};
+  Set<String> googleApps = {'Chrome', 'Youtube', 'Maps', 'Gmail', 'Hangouts', 'Meet', 'Duo', 'Drive', 'Calendar', 'Docs', 'Sheets', 'Slides', 'Photos', 'Keep'};
+  List<ApplicationWithIcon> apps = [];
   void getAppData() async {
-    Map<String, ApplicationWithIcon> apps;
-    List<ApplicationWithIcon> allApps = await DeviceApps.getInstalledApplications(includeSystemApps: true, includeAppIcons: true);
+    List<Application> allApps = await DeviceApps.getInstalledApplications(includeSystemApps: true, includeAppIcons: true);
     for(ApplicationWithIcon app in allApps) {
       if(googleApps.contains(app.appName)) {
-        apps[app.appName] = app;
+        apps.add(app);
       }
     }
     print(apps);
+    Navigator.pushReplacementNamed(context, '/home', arguments: apps);
+
+  }
+
+  @override
+  void initState() {
+    getAppData();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.red[400],
+        title: Text('My Custom Google Folder'),
+        centerTitle: true,
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Image.asset('assets/loading.gif', width: 400, height: 100,),
+            Text('Loading', style: TextStyle(fontSize: 20),)
+          ],
+        ),
+      ),
+    );
   }
 }
