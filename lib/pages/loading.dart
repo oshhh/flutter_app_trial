@@ -23,6 +23,7 @@ class _LoadingState extends State<Loading> {
 
   }
 
+
   @override
   void initState() {
     getAppData();
@@ -32,17 +33,19 @@ class _LoadingState extends State<Loading> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.red[400],
+        backgroundColor: Colors.blue[400],
         title: Text('My Custom Google Folder'),
         centerTitle: true,
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Image.asset('assets/loading.gif', width: 400, height: 100,),
-            Text('Loading', style: TextStyle(fontSize: 20),)
-          ],
+      body: Container(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Image.asset('assets/loading.gif', width: 400, height: 100,),
+              Text('Loading', style: TextStyle(fontSize: 20),)
+            ],
+          ),
         ),
       ),
     );

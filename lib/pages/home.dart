@@ -12,37 +12,40 @@ class Home extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.red[400],
+        backgroundColor: Colors.blue[400],
         title: Text("My Custom Google Folder"),
         centerTitle: true,
       ),
-      body: Column(
-        children: <Widget>[
-          SizedBox(height: 20),
-          Image(
-            image: AssetImage('assets/google-logo.png'),
-            height: 200,
-            width: 200,
-          ),
-          Container(
-            padding: EdgeInsets.all(20),
-            child: Text(
-              "Access all Google apps from one place!",
-              style: TextStyle(
-                fontSize: 30,
-                fontFamily: "Quicksand",
+      body: Container(
+        color: Colors.blue[50],
+        child: Column(
+          children: <Widget>[
+            SizedBox(height: 20),
+            Image(
+              image: AssetImage('assets/google-logo.png'),
+              height: 100,
+              width: 100,
+            ),
+            Container(
+              padding: EdgeInsets.all(20),
+              child: Text(
+                "Access all Google apps from one place!",
+                style: TextStyle(
+                  fontSize: 30,
+                  fontFamily: "Quicksand",
+                ),
+                textAlign: TextAlign.center,
               ),
-              textAlign: TextAlign.center,
             ),
-          ),
-          Expanded(
-            child: ListView(
-                children: apps.map((app) {
-                  return AppIcon(app: app);
-                }).toList(),
+            Expanded(
+              child: ListView(
+                  children: apps.map((app) {
+                    return AppIcon(app: app);
+                  }).toList(),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -10,31 +10,19 @@ class AppIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        padding: EdgeInsets.all(5),
-        child: Row(
-          children: <Widget>[
-            Expanded(
-              child: RawMaterialButton(
-                  splashColor: Colors.red[400],
-                  padding: EdgeInsets.all(5),
-                  elevation: 2.0,
-                  shape: CircleBorder(),
-                  clipBehavior: Clip.hardEdge,
-                  fillColor: Colors.red[200],
-                  child: Image(
-                    image: MemoryImage(app.icon),
-                    fit: BoxFit.cover,
-                    width: 40,
-                    height: 40,
-                  ),
-                  onPressed: () {
-
-                      DeviceApps.openApp(app.packageName);
-                  },
+        margin: EdgeInsets.fromLTRB(25, 5, 25, 5),
+        color: Colors.blue[100],
+        child: ListTile(
+            onTap: () => DeviceApps.openApp(app.packageName),
+            leading: Expanded(
+              child: Image(
+                image: MemoryImage(app.icon),
+                fit: BoxFit.cover,
+                width: 50,
+                height: 50,
               ),
             ),
-            Expanded(
-              child: Text(
+            title: Text(
                   app.appName,
                   style: TextStyle(
                     fontFamily: 'Quicksand',
@@ -42,9 +30,7 @@ class AppIcon extends StatelessWidget {
                     letterSpacing: 1,
                   ),
               ),
-            )
-          ],
-        ),
+        )
       ),
     );
   }
